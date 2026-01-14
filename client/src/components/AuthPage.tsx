@@ -20,7 +20,10 @@ export const AuthPage = ({ onLogin }: AuthPageProps) => {
         const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
 
         try {
-            const res = await fetch(`http://localhost:5000${endpoint}`, {
+            import { API_BASE_URL } from '../config';
+
+            // ...
+            const res = await fetch(`${API_BASE_URL}${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })

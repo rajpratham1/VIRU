@@ -21,7 +21,10 @@ export const FileExplorer = ({ onFileSelect }: FileExplorerProps) => {
         setLoading(true);
         setError('');
         try {
-            const res = await fetch(`http://localhost:5000/api/files?path=${encodeURIComponent(dirPath)}`);
+            import { API_BASE_URL } from '../config';
+
+            // ...
+            const res = await fetch(`${API_BASE_URL}/api/files?path=${encodeURIComponent(dirPath)}`);
             const data = await res.json();
             if (data.error) throw new Error(data.error);
             setFiles(data.files);

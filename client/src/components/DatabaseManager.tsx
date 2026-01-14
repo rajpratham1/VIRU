@@ -6,7 +6,10 @@ export const DatabaseManager = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/db/stats')
+        import { API_BASE_URL } from '../config';
+
+        // ...
+        fetch(`${API_BASE_URL}/api/db/stats`)
             .then(res => res.json())
             .then(data => {
                 setStats(data);

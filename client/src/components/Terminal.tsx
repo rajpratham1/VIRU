@@ -62,7 +62,11 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/api/chat', {
+            const res = await import { API_BASE_URL } from '../config';
+
+            // ... inside the file ...
+            fetch(`${API_BASE_URL}/api/chat`, {
+                // ...
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ prompt: cmd })
@@ -83,7 +87,7 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
         const fetchHistory = async () => {
             if (!token) return;
             try {
-                const res = await fetch('http://localhost:5000/api/chat/history', {
+                const res = await fetch(`${API_BASE_URL}/api/chat/history`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -189,7 +193,7 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
                     setIsLoading(true);
 
                     try {
-                        const res = await fetch('http://localhost:5000/api/vision/analyze', {
+                        const res = await fetch(`${API_BASE_URL}/api/vision/analyze`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -233,7 +237,7 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
         setIsLoading(true);
         if (!token) return;
         try {
-            const res = await fetch('http://localhost:5000/api/chat/history', {
+            const res = await fetch(`${API_BASE_URL}/api/chat/history`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -297,7 +301,7 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
                 setIsLoading(true);
 
                 try {
-                    const res = await fetch('http://localhost:5000/api/vision/analyze', {
+                    const res = await fetch(`${API_BASE_URL}/api/vision/analyze`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -472,9 +476,9 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
                             isListening && mode === 'command' ? stopListening() : startListening(false)
                         }}
                         className={`p-2 rounded-lg transition-colors mr-1 ${!supported ? 'text-gray-600 cursor-not-allowed' :
-                                isListening && mode === 'command'
-                                    ? 'bg-red-500/20 text-red-400 animate-pulse'
-                                    : 'text-[#71717a] hover:text-[#e4e4e7]'
+                            isListening && mode === 'command'
+                                ? 'bg-red-500/20 text-red-400 animate-pulse'
+                                : 'text-[#71717a] hover:text-[#e4e4e7]'
                             }`}
                         title={supported ? "Voice Command (Single)" : "Voice not supported"}
                     >
@@ -491,9 +495,9 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
                             isListening && mode === 'continuous' ? stopListening() : startListening(true)
                         }}
                         className={`p-2 rounded-lg transition-colors mr-2 ${!supported ? 'text-gray-600 cursor-not-allowed' :
-                                isListening && mode === 'continuous'
-                                    ? 'bg-purple-500/20 text-purple-400 animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.4)]'
-                                    : 'text-[#71717a] hover:text-[#e4e4e7]'
+                            isListening && mode === 'continuous'
+                                ? 'bg-purple-500/20 text-purple-400 animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.4)]'
+                                : 'text-[#71717a] hover:text-[#e4e4e7]'
                             }`}
                         title={supported ? "God Mode (Continuous Conversation)" : "Voice not supported"}
                     >

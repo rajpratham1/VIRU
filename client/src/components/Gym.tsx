@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 import { Brain, Upload, FileText, CheckCircle, AlertCircle, Database, RefreshCw } from 'lucide-react';
 
 export const Gym = () => {
@@ -10,7 +11,7 @@ export const Gym = () => {
 
     const fetchStats = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/rag/stats');
+            const res = await fetch(`${API_BASE_URL}/api/rag/stats`);
             const data = await res.json();
             setStats(data);
         } catch (e) {
@@ -32,7 +33,7 @@ export const Gym = () => {
         setMessage(null);
 
         try {
-            const res = await fetch('http://localhost:5000/api/rag/ingest', {
+            const res = await fetch(`${API_BASE_URL}/api/rag/ingest`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ filename: fileName, content })

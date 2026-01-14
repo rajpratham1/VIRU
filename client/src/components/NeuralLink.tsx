@@ -17,7 +17,10 @@ export const NeuralLink = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/rag/graph')
+        import { API_BASE_URL } from '../config';
+
+        // ...
+        fetch(`${API_BASE_URL}/api/rag/graph`)
             .then(res => res.json())
             .then(data => {
                 // Initialize random positions

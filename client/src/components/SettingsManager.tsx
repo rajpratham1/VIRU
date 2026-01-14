@@ -81,7 +81,10 @@ export const SettingsManager = () => {
                             </div>
                             <div>
                                 <div className="text-[#e4e4e7] font-bold text-sm">Host Interface</div>
-                                <div className="text-xs text-[#a1a1aa] mt-0.5 font-mono">http://localhost:5000</div>
+                                import {API_BASE_URL} from '../config';
+
+                                // ...
+                                <div className="text-xs text-[#a1a1aa] mt-0.5 font-mono">{API_BASE_URL}</div>
                             </div>
                         </div>
                         <button className="px-4 py-2 bg-[#27272a] hover:bg-[#3f3f46] text-[#e4e4e7] text-xs font-bold rounded-lg transition-all border border-[#3f3f46]">

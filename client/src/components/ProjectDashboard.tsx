@@ -25,27 +25,37 @@ export const ProjectDashboard = ({ token, onSelectProject, onLogout }: Dashboard
 
     const fetchProjects = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/projects', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
-            if (Array.isArray(data)) {
-                setProjects(data);
-            }
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
+            import { API_BASE_URL } from '../config';
+
+            // ...
+            const res = await fetch(`${API_BASE_URL}/api/projects`, {
+                // ...
+                const res = await fetch(`${API_BASE_URL}/api/projects`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await res.json();
+                if(Array.isArray(data)) {
+                    setProjects(data);
         }
-    };
+        } catch (error) {
+        console.error(error);
+    } finally {
+        setIsLoading(false);
+    }
+};
 
-    const handleCreate = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!newProjectName.trim()) return;
-        setIsCreating(true);
+const handleCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newProjectName.trim()) return;
+    setIsCreating(true);
 
-        try {
-            const res = await fetch('http://localhost:5000/api/projects', {
+    try {
+        import { API_BASE_URL } from '../config';
+
+        // ...
+        const res = await fetch(`${API_BASE_URL}/api/projects`, {
+            // ...
+            const res = await fetch(`${API_BASE_URL}/api/projects`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
