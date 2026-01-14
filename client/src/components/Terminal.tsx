@@ -67,7 +67,7 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
                 // ...
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                body: JSON.stringify({ prompt: cmd })
+                body: JSON.stringify({ prompt: cmd, projectId })
             });
             const data = await res.json();
             setLogs(prev => [...prev, { id: Date.now().toString(), type: 'ai', content: data.response, agent: data.agent }]);

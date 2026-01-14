@@ -6,15 +6,21 @@ import { dirname, join } from 'path';
 
 const app = express();
 
-app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'https://viru-phi.vercel.app',
-        'https://viru-rajpratham-gen1.loca.lt'
-    ],
-    credentials: true
-}));
+// Manual CORS Middleware - Brute Force Allow
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+});
 app.use(express.json());
 
 import { AgentService } from './agents/agent.service';
@@ -333,9 +339,10 @@ app.post('/api/chat', authenticateToken, async (req: AuthRequest, res) => {
         });
 
         res.json({ response: finalResponse, agent: agentIdentity });
-    } catch (error) {
+    } catch (error: any) {
         console.error(error);
-        res.status(500).json({ error: 'Internal System Error' });
+        await fs.appendFile('error.log', `${new Date().toISOString()} - ${error.stack || error}\n`);
+        res.status(500).json({ error: 'Internal System Error: ' + error.message });
     }
 });
 

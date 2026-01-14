@@ -56,7 +56,7 @@ export class RagService {
                 })
             });
             const data = await response.json();
-            return data.embedding;
+            return data.embedding || [];
         } catch (error) {
             console.error('[RAG] Embedding Error:', error);
             return [];
