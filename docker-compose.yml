@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Backend API
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=${JWT_SECRET:-viru_dev_secret}
+      # If using Ollama on the host machine from Docker:
+      # - OLLAMA_HOST=http://host.docker.internal:11434
+    volumes:
+      - ./server/brain:/app/brain
+      - ./server/prisma:/app/prisma
+
+  # Main Client (The Neural Interface)
+  client:
+    build: ./client
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+
+  # Admin Portal (Overwatch)
+  admin:
+    build: ./admin
+    ports:
+      - "5174:80"
+    depends_on:
+      - server
+
+# Usage:
+# 1. docker-compose up --build -d
+# 2. Access Client at localhost:5173
+# 3. Access Admin at localhost:5174
