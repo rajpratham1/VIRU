@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Folder, FileCode, ChevronDown, RefreshCw } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface FileEntry {
     name: string;
@@ -21,9 +22,7 @@ export const FileExplorer = ({ onFileSelect }: FileExplorerProps) => {
         setLoading(true);
         setError('');
         try {
-            import { API_BASE_URL } from '../config';
 
-            // ...
             const res = await fetch(`${API_BASE_URL}/api/files?path=${encodeURIComponent(dirPath)}`);
             const data = await res.json();
             if (data.error) throw new Error(data.error);

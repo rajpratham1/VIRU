@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Database, FolderGit2, Users, MessageSquare } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 export const DatabaseManager = () => {
     const [stats, setStats] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        import { API_BASE_URL } from '../config';
 
-        // ...
         fetch(`${API_BASE_URL}/api/db/stats`)
             .then(res => res.json())
             .then(data => {

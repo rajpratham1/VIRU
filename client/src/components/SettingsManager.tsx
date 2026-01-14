@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Settings, Cpu, Shield, Globe } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 export const SettingsManager = () => {
     const [model, setModel] = useState('mistral');
@@ -81,9 +82,7 @@ export const SettingsManager = () => {
                             </div>
                             <div>
                                 <div className="text-[#e4e4e7] font-bold text-sm">Host Interface</div>
-                                import {API_BASE_URL} from '../config';
 
-                                // ...
                                 <div className="text-xs text-[#a1a1aa] mt-0.5 font-mono">{API_BASE_URL}</div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TerminalSquare, Lock, User, ArrowRight, ShieldCheck } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface AuthPageProps {
     onLogin: (token: string, username: string) => void;
@@ -20,9 +21,7 @@ export const AuthPage = ({ onLogin }: AuthPageProps) => {
         const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
 
         try {
-            import { API_BASE_URL } from '../config';
 
-            // ...
             const res = await fetch(`${API_BASE_URL}${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

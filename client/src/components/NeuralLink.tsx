@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Network } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface Node {
     id: string;
@@ -17,9 +18,7 @@ export const NeuralLink = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        import { API_BASE_URL } from '../config';
 
-        // ...
         fetch(`${API_BASE_URL}/api/rag/graph`)
             .then(res => res.json())
             .then(data => {
