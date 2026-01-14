@@ -10,7 +10,10 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   username  String   @unique
+  email     String?  @unique
   password  String   // Hashed password
+  isAdmin   Boolean  @default(false)
+  tier      String   @default("free")
   createdAt DateTime @default(now())
   projects  Project[]
   messages  Message[]

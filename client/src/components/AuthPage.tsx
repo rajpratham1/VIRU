@@ -88,10 +88,10 @@ export const AuthPage = ({ onLogin }: AuthPageProps) => {
                                 <User size={16} className="absolute left-4 top-3.5 text-[#52525b] group-focus-within:text-[#58a6ff] transition-colors" />
                                 <input
                                     type="text"
-                                    placeholder="Username"
+                                    placeholder="Username or Email"
                                     value={username}
                                     onChange={e => setUsername(e.target.value)}
-                                    className="w-full bg-[#18181b] border border-[#27272a] rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-[#58a6ff] focus:ring-1 focus:ring-[#58a6ff] transition-all placeholder-[#3f3f46]"
+                                    className="w-full bg-zinc-900/50 border border-zinc-700 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-[#58a6ff] focus:ring-1 focus:ring-[#58a6ff] transition-all placeholder-zinc-500"
                                 />
                             </div>
                         </div>
@@ -105,7 +105,7 @@ export const AuthPage = ({ onLogin }: AuthPageProps) => {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
-                                    className="w-full bg-[#18181b] border border-[#27272a] rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-[#58a6ff] focus:ring-1 focus:ring-[#58a6ff] transition-all placeholder-[#3f3f46]"
+                                    className="w-full bg-zinc-900/50 border border-zinc-700 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-[#58a6ff] focus:ring-1 focus:ring-[#58a6ff] transition-all placeholder-zinc-500"
                                 />
                             </div>
                         </div>
