@@ -5,7 +5,11 @@ import { PanelLeftClose, PanelLeftOpen, Globe, RefreshCw } from 'lucide-react';
 
 
 
-export const Workspace = () => {
+interface WorkspaceProps {
+    project: any;
+}
+
+export const Workspace = ({ project }: WorkspaceProps) => {
     const [activeFile, setActiveFile] = useState<string | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [mirrorOpen, setMirrorOpen] = useState(false);
