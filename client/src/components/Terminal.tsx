@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { Send, TerminalSquare, Mic, MicOff, History, Trash2, Rocket, Infinity as InfinityIcon } from 'lucide-react';
 import { useVoice } from '../hooks/useVoice';
+import { API_BASE_URL } from '../config';
 
 interface Log {
     id: string;
@@ -62,10 +63,7 @@ export const Terminal = ({ token, projectId }: TerminalProps) => {
         }
 
         try {
-            const res = await import { API_BASE_URL } from '../config';
-
-            // ... inside the file ...
-            fetch(`${API_BASE_URL}/api/chat`, {
+            const res = await fetch(`${API_BASE_URL}/api/chat`, {
                 // ...
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },

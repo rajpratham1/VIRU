@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FolderPlus, Folder, TerminalSquare, Cpu, LogOut } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface Project {
     id: string;
@@ -25,36 +26,26 @@ export const ProjectDashboard = ({ token, onSelectProject, onLogout }: Dashboard
 
     const fetchProjects = async () => {
         try {
-            import { API_BASE_URL } from '../config';
-
-            // ...
             const res = await fetch(`${API_BASE_URL}/api/projects`, {
-                // ...
-                const res = await fetch(`${API_BASE_URL}/api/projects`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                const data = await res.json();
-                if(Array.isArray(data)) {
-                    setProjects(data);
-        }
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                setProjects(data);
+            }
         } catch (error) {
-        console.error(error);
-    } finally {
-        setIsLoading(false);
-    }
-};
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newProjectName.trim()) return;
-    setIsCreating(true);
+    const handleCreate = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newProjectName.trim()) return;
+        setIsCreating(true);
 
-    try {
-        import { API_BASE_URL } from '../config';
-
-        // ...
-        const res = await fetch(`${API_BASE_URL}/api/projects`, {
-            // ...
+        try {
             const res = await fetch(`${API_BASE_URL}/api/projects`, {
                 method: 'POST',
                 headers: {
