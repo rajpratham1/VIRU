@@ -1,94 +1,132 @@
 # 🦅 VIRU v1.0: The Autonomous AI Infrastructure
 
-**"Virtual Intelligence Response Unit"**
-
-VIRU is not just a coding assistant. It is a **Self-Hosted, Agentic Operating System** designed to act as a senior software engineer living on your desktop.
+> **"Virtual Intelligence Response Unit"** — A Self-Hosted, Agentic Operating System.
 
 ![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-brightgreen)
 ![Version](https://img.shields.io/badge/VERSION-1.0.0-blue)
+![License](https://img.shields.io/badge/LICENSE-MIT-green)
 ![Stack](https://img.shields.io/badge/STACK-MERN%20%2B%20LOCAL%20LLM-orange)
 
----
-
-## ⚠️ cyber SECURITY DISCLAIMER ⚠️
-> [!IMPORTANT]
-> **High Privilege Application**: VIRU is an **Agentic IDE**. This means it has permission to **READ and WRITE** files on the host machine to perform its job (writing code).
-
-*   **Public Exposure**: Do NOT expose this application directly to the public internet (i.e. port 5000) without a VPN or strict firewall.
-*   **Authentication**: The app uses JWT Authentication. Ensure you change the `JWT_SECRET` in your `.env` file before deployment.
-*   **File Access**: The agent currently has access to the filesystem where it is running. We recommend running VIRU inside a **Docker Container** (provided) to isolate it from your main host OS.
+VIRU is an advanced **Agentic IDE** that lives on your desktop. Unlike standard chatbots, VIRU has direct access to your file system, allowing it to write code, execute commands, and deploy applications autonomously. It combines the power of **Local LLMs (Ollama)** with a modern React interface.
 
 ---
 
-## 🌟 Key Features (The "Big 5")
+## ⚡ Key Capabilities
 
 ### 1. 👁️ The Eye (Vision-to-Code)
-Drag and drop any screenshot onto the terminal. VIRU uses Multimodal AI (LLaVA/GPT-4V) to inspect the UI and instantly write the React code to replicate it.
-*   **Usage**: Just paste (`Ctrl+V`) an image into the command bar.
+**"See it, Build it."**
+*   Drag and drop any UI screenshot into the terminal.
+*   VIRU analyzes the image using Multimodal AI (LLaVA/GPT-4V) and writes the complete React/Tailwind code to replicate it.
 
 ### 2. 🗣️ The Voice (God Mode)
-A hands-free, continuous conversation loop.
-*   **Mode 1 (Command)**: Click Mic for single instructions.
-*   **Mode 2 (God Mode)**: Click the **Infinity Icon (∞)**. VIRU listens, executes, speaks back, and listens again. You can code while walking around the room.
+**"Hands-free Coding."**
+*   **Command Mode**: Click the Mic for single instructions.
+*   **God Mode (∞)**: Continuous conversations. VIRU listens, thinks, executes, and speaks back. Perfect for "walking and talking" architecture planning.
 
-### 3. 🧠 The Neural Link (Memory)
-VIRU doesn't just "chat". It maintains a persistent **RAG (Retrieval-Augmented Generation)** database of your project.
-*   **Visualization**: Navigate to the "Neural Link" tab to see a 3D Starfield of your project's memories and code chunks.
+### 3. 🧠 The Neural Link (RAG Memory)
+**"Total Recall."**
+*   VIRU maintains a persistent **Vector Database** of your project.
+*   It remembers context from previous conversations and documents.
+*   **Visualizer**: View your project's memory as a 3D interactive starfield in the "Neural Link" tab.
 
-### 4. 🛡️ Overwatch (Admin Portal)
-A standalone "SaaS" Dashboard for the Owner.
-*   **URL**: `http://localhost:5174`
-*   **Capabilities**: Monitor all users, ban abusers, broadcast global system alerts, and manage subscription tiers (Free vs Pro).
+### 4. ✈️ Autopilot (Self-Healing)
+**"Code that fixes itself."**
+*   Command: `/autopilot <goal>`
+*   VIRU writes code, runs the terminal to check for errors, reads the error logs, and fixes its own mistakes in a loop until the goal is achieved.
 
-### 5. ✈️ Autopilot (Self-Healing)
-The core agentic loop.
-*   **Command**: `/autopilot <goal>`
-*   **Behavior**: VIRU writes code -> Runs Terminal -> Reads Error -> Fixes Code -> Repeats until success.
+### 5. 🛡️ Overwatch (Admin Portal)
+**"Control Everything."**
+*   A standalone SaaS Dashboard running on port `5174`.
+*   Manage users, ban abusers, broadcast system-wide alerts, and manage Subscription Tiers (Free vs Pro).
 
 ---
 
-## 🛠️ Quick Start
+## 🛠️ Technology Stack
+
+*   **Frontend**: React, Vite, TailwindCSS (The "Neural Interface")
+*   **Backend**: Node.js, Express, TypeScript (The "Brain")
+*   **Database**: SQLite + Prisma ORM
+*   **AI Engine**: Ollama (Local) or OpenAI (Cloud)
+*   **Infrastructure**: LocalTunnel (for self-hosting), Docker support
+
+---
+
+## � Quick Start Guide
 
 ### Prerequisites
-*   Node.js v18+
-*   Local LLM Server (Ollama) OR OpenAI Key
+1.  **Node.js v18+** installed.
+2.  **Ollama** installed and running (`ollama run mistral`).
 
 ### Installation
 
 ```bash
-# 1. Clone Repo
-git clone https://github.com/your-repo/viru.git
+# 1. Clone the Repository
+git clone https://github.com/your-username/viru.git
+cd viru
 
-# 2. Install Dependencies (Monorepo)
+# 2. Install Dependencies (Root + Client + Server + Admin)
 npm install
 cd client && npm install
-cd server && npm install
+cd ../server && npm install
 cd ../admin && npm install
 
 # 3. Setup Database
-cd server
+cd ../server
 npx prisma generate
 npx prisma db push
 ```
 
 ### Running the System
+
+We have engineered a **One-Click Startup** command that launches the Backend, Frontend, Admin Panel, and a Public Tunnel simultaneously.
+
 ```bash
-# From Root
+# From the Project Root
 npm run dev
 ```
 
-*   **Client**: `http://localhost:5173`
-*   **Server**: `http://localhost:5000`
-*   **Admin**: `http://localhost:5174`
+*   **Console**: [http://localhost:5173](http://localhost:5173)
+*   **Server**: [http://localhost:5000](http://localhost:5000)
+*   **Overwatch**: [http://localhost:5174](http://localhost:5174)
 
 ---
 
-## 📁 Architecture
-*   **/client**: React + Vite + Tailwind (The Neural Interface)
-*   **/server**: Node.js + Express + Prisma (The Brain)
-*   **/admin**: React + Vite (Overwatch Portal)
-*   **/brain**: Local Vector Store & Agent Personas
+## 🌐 Deployment (Hybrid Cloud)
 
-## 📜 Credits
-Built by **Raj Pratham**.
-*Engineered for the Future.*
+VIRU is designed to be **Self-Hosted** on your machine while accessible from the cloud (e.g., Vercel).
+
+1.  **Backend**: Runs on your laptop/server (`npm run dev`).
+    *   It automatically creates a secure tunnel: `https://viru-rajpratham-gen1.loca.lt`
+2.  **Frontend**: Deployed to Vercel (`viru.vercel.app`).
+    *   Go to Vercel Settings -> Environment Variables.
+    *   Set `VITE_API_URL` to your Tunnel URL.
+
+This allows you to control your powerful local machine from a lightweight cloud interface anywhere in the world.
+
+---
+
+## ⚠️ Troubleshooting
+
+**"CORS Error" or "Network Error"**
+*   Ensure the Backend is running (`npm run dev`).
+*   Verify the Tunnel URL hasn't changed.
+*   If using the Tunnel, you may need to visit the Tunnel URL **once** in your browser to bypass the security check (Public IP password).
+
+**"500 Internal Server Error"**
+*   Check `server/error.log` for details.
+*   Ensure **Ollama** is running (`ollama list` should show models).
+
+---
+
+## 📜 License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
+
+## � Credits
+
+**Architect**: Raj Pratham
+**System**: VIRU (Virtual Intelligence Response Unit)
+
+*"Engineered for the Future."*
