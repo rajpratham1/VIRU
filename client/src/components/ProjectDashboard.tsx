@@ -112,7 +112,7 @@ export const ProjectDashboard = ({ token, onSelectProject, onLogout }: Dashboard
                                     value={newProjectName}
                                     onChange={(e) => setNewProjectName(e.target.value)}
                                     placeholder="Operation Name..."
-                                    className="w-full bg-[#09090b] border border-[#27272a] rounded-xl px-4 py-4 text-sm focus:border-[#58a6ff] focus:ring-1 focus:ring-[#58a6ff] outline-none transition-all placeholder-[#52525b] text-white"
+                                    className="w-full bg-zinc-900/50 border border-zinc-700 rounded-xl px-4 py-4 text-sm focus:border-[#58a6ff] focus:ring-1 focus:ring-[#58a6ff] outline-none transition-all placeholder-zinc-500 text-white"
                                 />
                                 <button
                                     type="submit"

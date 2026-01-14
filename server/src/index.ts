@@ -7,7 +7,12 @@ import { dirname, join } from 'path';
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:5174',
+        'https://viru-phi.vercel.app',
+        'https://viru-rajpratham-gen1.loca.lt'
+    ],
     credentials: true
 }));
 app.use(express.json());
