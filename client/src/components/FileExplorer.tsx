@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Folder, FileCode, File, ChevronRight, ChevronDown, RefreshCw } from 'lucide-react';
+import { Folder, FileCode, ChevronDown, RefreshCw } from 'lucide-react';
 
 interface FileEntry {
     name: string;

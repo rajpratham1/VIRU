@@ -3,15 +3,13 @@ import { CodeEditor } from './CodeEditor';
 import { FileExplorer } from './FileExplorer';
 import { PanelLeftClose, PanelLeftOpen, Globe, RefreshCw } from 'lucide-react';
 
-interface WorkspaceProps {
-    project: any;
-}
 
-export const Workspace = ({ project }: WorkspaceProps) => {
+
+export const Workspace = () => {
     const [activeFile, setActiveFile] = useState<string | null>(null);
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [mirrorOpen, setMirrorOpen] = useState(false);
-    const [previewUrl, setPreviewUrl] = useState(`http://localhost:3000`); // Dyanmic later
+    const previewUrl = `http://localhost:3000`; // Dyanmic later
     const [refreshKey, setRefreshKey] = useState(0);
 
     const toggleMirror = () => setMirrorOpen(!mirrorOpen);

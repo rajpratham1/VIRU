@@ -12,7 +12,7 @@ export const DatabaseManager = () => {
                 setStats(data);
                 setLoading(false);
             })
-            .catch(err => setLoading(false));
+            .catch(() => setLoading(false));
     }, []);
 
     if (loading) return <div className="p-8 text-[#71717a] animate-pulse">Accessing Neural Memory...</div>;

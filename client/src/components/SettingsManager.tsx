@@ -3,7 +3,7 @@ import { Settings, Cpu, Shield, Globe } from 'lucide-react';
 
 export const SettingsManager = () => {
     const [model, setModel] = useState('mistral');
-    const [mode, setMode] = useState('local');
+
 
     return (
         <div className="h-full bg-[#0c0c0e] text-[#e4e4e7] p-8 overflow-y-auto">
