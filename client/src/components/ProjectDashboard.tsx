@@ -29,6 +29,12 @@ export const ProjectDashboard = ({ token, onSelectProject, onLogout }: Dashboard
             const res = await fetch(`${API_BASE_URL}/api/projects`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+
+            if (res.status === 401 || res.status === 403) {
+                onLogout();
+                return;
+            }
+
             const data = await res.json();
             if (Array.isArray(data)) {
                 setProjects(data);
@@ -54,8 +60,20 @@ export const ProjectDashboard = ({ token, onSelectProject, onLogout }: Dashboard
                 },
                 body: JSON.stringify({ name: newProjectName })
             });
-            const project = await res.json();
-            setProjects([project, ...projects]);
+
+            if (res.status === 401 || res.status === 403) {
+                onLogout();
+                return;
+            }
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error("Failed to create project:", data);
+                return;
+            }
+
+            setProjects([data, ...projects]);
             setNewProjectName('');
         } catch (error) {
             console.error(error);
