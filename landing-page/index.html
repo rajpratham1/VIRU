@@ -13,6 +13,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Schema.org Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "VIRU",
+      "description": "Free self-hosted AI coding assistant with vision, voice, and autonomous coding capabilities",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Windows, MacOS, Linux",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Raj Pratham"
+      }
+    }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -25,6 +46,10 @@
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
             color: #ffffff;
             overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -45,12 +70,8 @@
         }
 
         #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
+            display: none;
+            /* Removed particles.js to fix error */
         }
 
         .hero::before {
@@ -501,56 +522,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Newsletter Section */
-        .newsletter {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-        }
-
-        .newsletter-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .newsletter-input::placeholder {
-            color: #64748b;
-        }
-
-        @media (max-width: 768px) {
-            .cookie-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .cookie-buttons {
-                width: 100%;
-                flex-direction: column;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-        }
-
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -580,13 +551,44 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
         }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .trust-badge:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .trust-badge span {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
 <body>
     <!-- Hero Section -->
     <section class="hero">
-        <div id="particles-js"></div>
+
         <div class="container">
             <div class="hero-content">
                 <div class="logo">🦅 VIRU</div>
@@ -605,8 +607,33 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="https://github.com/rajpratham1/VIRU" class="btn btn-primary">Download Free</a>
+                    <a href="https://github.com/rajpratham1/VIRU/archive/refs/heads/main.zip" class="btn btn-primary"
+                        download>Download ZIP</a>
                     <a href="https://github.com/rajpratham1/VIRU#readme" class="btn btn-secondary">View Docs</a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <span>✅</span>
+                        <span>Open Source (MIT)</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>✅</span>
+                        <span>No Telemetry</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>✅</span>
+                        <span>GDPR Compliant</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>✅</span>
+                        <span>Self-Hosted</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span>✅</span>
+                        <span>100% Free</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -985,22 +1012,6 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Stay Updated</h2>
-            <p style="text-align: center; color: #94a3b8; max-width: 600px; margin: 0 auto;">
-                Get notified when we release new features, VS Code extension, and major updates. No spam, unsubscribe
-                anytime.
-            </p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" class="newsletter-input" placeholder="Enter your email" required id="emailInput" />
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
-            <p id="newsletterMessage" style="text-align: center; margin-top: 1rem; color: #22c55e; display: none;"></p>
-        </div>
-    </section>
-
     <!-- Installation Section -->
     <section class="install">
         <div class="container">
@@ -1052,43 +1063,8 @@
         </div>
     </footer>
 
-    <!-- Particles.js Configuration -->
-    <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#3b82f6' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#3b82f6',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
 
+    <script>
         // Cookie Banner Logic
         window.addEventListener('load', function () {
             const cookieBanner = document.getElementById('cookieBanner');
@@ -1111,27 +1087,6 @@
                 localStorage.setItem('cookieConsent', 'declined');
                 cookieBanner.classList.remove('show');
             });
-        });
-
-        // Newsletter Form
-        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const email = document.getElementById('emailInput').value;
-            const message = document.getElementById('newsletterMessage');
-
-            // For now, just show success message
-            // In production, you'd send this to your backend or email service
-            message.textContent = '✅ Thanks for subscribing! Check your email for confirmation.';
-            message.style.display = 'block';
-            document.getElementById('emailInput').value = '';
-
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                message.style.display = 'none';
-            }, 5000);
-
-            // TODO: Send email to your backend
-            // fetch('/api/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
         });
 
         // Back to Top Button
