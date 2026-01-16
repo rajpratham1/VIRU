@@ -550,6 +550,36 @@
                 flex-direction: column;
             }
         }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+        }
     </style>
 </head>
 
@@ -955,6 +985,22 @@
         </div>
     </section>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated</h2>
+            <p style="text-align: center; color: #94a3b8; max-width: 600px; margin: 0 auto;">
+                Get notified when we release new features, VS Code extension, and major updates. No spam, unsubscribe
+                anytime.
+            </p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required id="emailInput" />
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+            <p id="newsletterMessage" style="text-align: center; margin-top: 1rem; color: #22c55e; display: none;"></p>
+        </div>
+    </section>
+
     <!-- Installation Section -->
     <section class="install">
         <div class="container">
@@ -1087,6 +1133,24 @@
             // TODO: Send email to your backend
             // fetch('/api/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
         });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner">
@@ -1103,6 +1167,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to top">
+        ↑
+    </button>
 </body>
 
 </html>
