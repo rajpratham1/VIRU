@@ -14,7 +14,7 @@
 
 ## 🌐 Web Presence
 
-**Landing Page**: [viru.vercel.app](https://viru.vercel.app) _(Deploy your own from `landing-page/`)_  
+**Landing Page**: [viru.vercel.app](https://viru-ptif.vercel.app/) _(Deploy your own from `landing-page/`)_  
 **GitHub**: [github.com/rajpratham1/VIRU](https://github.com/rajpratham1/VIRU)  
 **License**: MIT (100% Free & Open Source)
 
