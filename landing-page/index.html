@@ -432,6 +432,124 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 1.5rem;
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .cookie-banner.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .cookie-text {
+            flex: 1;
+            color: #94a3b8;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cookie-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .cookie-accept {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+
+        .cookie-decline {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-input::placeholder {
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -447,8 +565,10 @@
 
                 <!-- GitHub Stats -->
                 <div class="github-badge">
-                    <a href="https://github.com/rajpratham1/VIRU/stargazers" class="badge">
-                        ⭐ Star on GitHub
+                    <a href="https://github.com/rajpratham1/VIRU/stargazers" class="badge"
+                        style="display: flex; align-items: center; gap: 0.5rem;">
+                        <img src="https://img.shields.io/github/stars/rajpratham1/VIRU?style=social" alt="GitHub stars"
+                            style="margin: 0;">
                     </a>
                     <span class="badge">🚀 Open Source</span>
                     <span class="badge">💰 Free Forever</span>
@@ -922,7 +1042,67 @@
             },
             retina_detect: true
         });
+
+        // Cookie Banner Logic
+        window.addEventListener('load', function () {
+            const cookieBanner = document.getElementById('cookieBanner');
+            const cookieAccept = document.getElementById('cookieAccept');
+            const cookieDecline = document.getElementById('cookieDecline');
+
+            // Check if user has already made a choice
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieBanner.classList.add('show');
+                }, 1000);
+            }
+
+            cookieAccept.addEventListener('click', function () {
+                localStorage.setItem('cookieConsent', 'accepted');
+                cookieBanner.classList.remove('show');
+            });
+
+            cookieDecline.addEventListener('click', function () {
+                localStorage.setItem('cookieConsent', 'declined');
+                cookieBanner.classList.remove('show');
+            });
+        });
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const message = document.getElementById('newsletterMessage');
+
+            // For now, just show success message
+            // In production, you'd send this to your backend or email service
+            message.textContent = '✅ Thanks for subscribing! Check your email for confirmation.';
+            message.style.display = 'block';
+            document.getElementById('emailInput').value = '';
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+
+            // TODO: Send email to your backend
+            // fetch('/api/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
+        });
     </script>
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <strong>🍪 We respect your privacy</strong><br>
+                This website uses minimal cookies to ensure it works properly. We don't track you or share your data
+                with third parties.
+                By continuing, you accept our <a href="#" style="color: #3b82f6;">Privacy Policy</a>.
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" id="cookieAccept">Accept</button>
+                <button class="cookie-btn cookie-decline" id="cookieDecline">Decline</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
