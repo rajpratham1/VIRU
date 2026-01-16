@@ -1,0 +1,6 @@
+# Git attributes to exclude landing page from ZIP downloads
+landing-page/ export-ignore
+.github/ export-ignore
+*.md export-ignore
+!README.md
+!DOCKER.md

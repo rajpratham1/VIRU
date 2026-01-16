@@ -18,6 +18,17 @@
 **GitHub**: [github.com/rajpratham1/VIRU](https://github.com/rajpratham1/VIRU)  
 **License**: MIT (100% Free & Open Source)
 
+## 📁 Repository Structure
+
+This repository contains:
+- **`/client`** - React frontend (main VIRU interface)
+- **`/server`** - Node.js backend (AI engine)
+- **`/admin`** - Admin dashboard
+- **`/landing-page`** - Marketing website (not needed for VIRU to run)
+
+**To download VIRU**: Use the "Download ZIP" button which excludes the landing page automatically.  
+**To deploy landing page**: See `landing-page/README.md`
+
 ---
 
 ## ⚡ Key Capabilities
