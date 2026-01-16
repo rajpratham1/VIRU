@@ -4,12 +4,16 @@
     "outputDirectory": "landing-page",
     "routes": [
         {
-            "src": "/privacy",
-            "dest": "/privacy.html"
+            "src": "/privacy-policy.html",
+            "dest": "/privacy-policy.html"
+        },
+        {
+            "src": "/privacy-policy",
+            "dest": "/privacy-policy.html"
         },
         {
             "src": "/(.*)",
-            "dest": "/index.html"
+            "dest": "/$1"
         }
     ]
 }
