@@ -21,112 +21,125 @@ VIRU is an advanced **Agentic IDE** that lives on your desktop. Unlike standard 
 ### 2. 🗣️ The Voice (God Mode)
 **"Hands-free Coding."**
 *   **Command Mode**: Click the Mic for single instructions.
-*   **God Mode (∞)**: Continuous conversations. VIRU listens, thinks, executes, and speaks back. Perfect for "walking and talking" architecture planning.
+*   **God Mode (∞)**: Continuous conversations. VIRU listens, thinks, executes, and speaks back.
 
 ### 3. 🧠 The Neural Link (RAG Memory)
 **"Total Recall."**
 *   VIRU maintains a persistent **Vector Database** of your project.
 *   It remembers context from previous conversations and documents.
-*   **Visualizer**: View your project's memory as a 3D interactive starfield in the "Neural Link" tab.
+*   **Visualizer**: View your project's memory as a 3D interactive starfield.
 
 ### 4. ✈️ Autopilot (Self-Healing)
 **"Code that fixes itself."**
 *   Command: `/autopilot <goal>`
-*   VIRU writes code, runs the terminal to check for errors, reads the error logs, and fixes its own mistakes in a loop until the goal is achieved.
+*   VIRU writes code, runs tests, reads errors, and fixes itself in a loop.
 
 ### 5. 🛡️ Overwatch (Admin Portal)
 **"Control Everything."**
 *   A standalone SaaS Dashboard running on port `5174`.
-*   Manage users, ban abusers, broadcast system-wide alerts, and manage Subscription Tiers (Free vs Pro).
+*   Manage users, broadcast system-wide alerts, and manage subscription tiers.
 
 ---
 
 ## 🛠️ Technology Stack
 
-*   **Frontend**: React, Vite, TailwindCSS (The "Neural Interface")
-*   **Backend**: Node.js, Express, TypeScript (The "Brain")
+*   **Frontend**: React 19, Vite, TailwindCSS
+*   **Backend**: Node.js, Express, TypeScript
 *   **Database**: SQLite + Prisma ORM
 *   **AI Engine**: Ollama (Local) or OpenAI (Cloud)
-*   **Infrastructure**: LocalTunnel (for self-hosting), Docker support
+*   **Infrastructure**: Docker, LocalTunnel
 
 ---
 
-## � Quick Start Guide
+## 🚀 Quick Start
 
-### Prerequisites
-1.  **Node.js v18+** installed.
-2.  **Ollama** installed and running (`ollama run mistral`).
+### 🐳 Method 1: Docker (Recommended for Everyone)
 
-### Installation
+**Prerequisites:**
+1.  [Docker Desktop](https://www.docker.com/products/docker-desktop)
+2.  [Ollama](https://ollama.com) → Run: `ollama pull mistral`
+
+**Installation:**
 
 ```bash
-# 1. Clone the Repository
-git clone https://github.com/your-username/viru.git
-cd viru
-
-# 2. Install Dependencies (Root + Client + Server + Admin)
-npm install
-cd client && npm install
-cd ../server && npm install
-cd ../admin && npm install
-
-# 3. Setup Database
-cd ../server
-npx prisma generate
-npx prisma db push
+git clone https://github.com/rajpratham1/VIRU.git
+cd VIRU
+docker-compose up -d
 ```
 
-### Running the System
+**Access:**
+*   **Main Console**: http://localhost:5173
+*   **Admin Dashboard**: http://localhost:5174
+*   **API**: http://localhost:5000
 
-We have engineered a **One-Click Startup** command that launches the Backend, Frontend, Admin Panel, and a Public Tunnel simultaneously.
+**Stop:** `docker-compose down`
+
+> 📘 See [DOCKER.md](DOCKER.md) for publishing to Docker Hub
+
+---
+
+### 💻 Method 2: Manual Setup (For Developers)
+
+**Prerequisites:** Node.js v18+, Ollama
 
 ```bash
-# From the Project Root
+# Clone & Install
+git clone https://github.com/rajpratham1/VIRU.git
+cd VIRU
+npm install
+cd client && npm install && cd ..
+cd server && npm install && npx prisma generate && npx prisma db push && cd ..
+cd admin && npm install && cd ..
+
+# Run
 npm run dev
 ```
-
-*   **Console**: [http://localhost:5173](http://localhost:5173)
-*   **Server**: [http://localhost:5000](http://localhost:5000)
-*   **Overwatch**: [http://localhost:5174](http://localhost:5174)
 
 ---
 
 ## 🌐 Deployment (Hybrid Cloud)
 
-VIRU is designed to be **Self-Hosted** on your machine while accessible from the cloud (e.g., Vercel).
+VIRU runs **locally** but can be accessed from **anywhere** via:
 
-1.  **Backend**: Runs on your laptop/server (`npm run dev`).
-    *   It automatically creates a secure tunnel: `https://viru-rajpratham-gen1.loca.lt`
-2.  **Frontend**: Deployed to Vercel (`viru.vercel.app`).
-    *   Go to Vercel Settings -> Environment Variables.
-    *   Set `VITE_API_URL` to your Tunnel URL.
-
-This allows you to control your powerful local machine from a lightweight cloud interface anywhere in the world.
+1.  **Backend**: Runs on your machine with auto-tunnel: `https://viru-rajpratham-gen1.loca.lt`
+2.  **Frontend**: Deployed to Vercel
+3.  **Connection**: Set Vercel env `VITE_API_URL` to your tunnel URL
 
 ---
 
 ## ⚠️ Troubleshooting
 
-**"CORS Error" or "Network Error"**
-*   Ensure the Backend is running (`npm run dev`).
-*   Verify the Tunnel URL hasn't changed.
-*   If using the Tunnel, you may need to visit the Tunnel URL **once** in your browser to bypass the security check (Public IP password).
+**CORS/Network Error:**
+*   Ensure backend is running
+*   Visit tunnel URL once to bypass IP check
 
-**"500 Internal Server Error"**
-*   Check `server/error.log` for details.
-*   Ensure **Ollama** is running (`ollama list` should show models).
+**500 Error:**
+*   Check `server/error.log`
+*   Verify Ollama is running: `ollama list`
+
+**Docker Issues:**
+*   Can't connect to Ollama? Use `AI_MODEL_URL=http://host.docker.internal:11434`
+*   Port conflicts? Change ports in `docker-compose.yml`
+
+---
+
+## 📚 Documentation
+
+*   [DOCKER.md](DOCKER.md) - Docker distribution guide
+*   [documentation.md](documentation.md) - Full technical docs
+*   [learn.md](learn.md) - Developer glossary
 
 ---
 
 ## 📜 License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+MIT License - See [LICENSE](LICENSE)
 
 ---
 
-## � Credits
+## 👥 Credits
 
-**Architect**: Raj Pratham
+**Architect**: Raj Pratham  
 **System**: VIRU (Virtual Intelligence Response Unit)
 
 *"Engineered for the Future."*
