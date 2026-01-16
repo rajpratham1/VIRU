@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRU - Free Self-Hosted AI Coding Assistant</title>
+    <meta name="description"
+        content="Free alternative to ChatGPT and GitHub Copilot. Self-hosted AI with vision, voice, and autopilot. $0/month forever.">
+
+    <!-- Fonts -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            padding: 6rem 0;
+        }
+
+        .comparison h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 1.5rem;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(59, 130, 246, 0.1);
+            font-weight: 600;
+        }
+
+        tr:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .check {
+            color: #22c55e;
+            font-size: 1.5rem;
+        }
+
+        .cross {
+            color: #ef4444;
+            font-size: 1.5rem;
+        }
+
+        /* Install Section */
+        .install {
+            padding: 6rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .install h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .code-block {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .code-block code {
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        /* Demo Section */
+        .demo {
+            padding: 6rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 1rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* GitHub Badge */
+        .github-badge {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="logo">🦅 VIRU</div>
+                <h1>Free Self-Hosted AI Coding Assistant</h1>
+                <p class="tagline">ChatGPT Alternative • $0/month • 100% Private</p>
+
+                <!-- GitHub Stats -->
+                <div class="github-badge">
+                    <a href="https://github.com/rajpratham1/VIRU/stargazers" class="badge">
+                        ⭐ Star on GitHub
+                    </a>
+                    <span class="badge">🚀 Open Source</span>
+                    <span class="badge">💰 Free Forever</span>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="https://github.com/rajpratham1/VIRU" class="btn btn-primary">Download Free</a>
+                    <a href="https://github.com/rajpratham1/VIRU#readme" class="btn btn-secondary">View Docs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Local & Private</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$0</div>
+                    <div class="stat-label">Monthly Cost</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2min</div>
+                    <div class="stat-label">Setup Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Usage Limit</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose VIRU?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>The Eye</h3>
+                    <p>Drop a UI screenshot and get instant React/Tailwind code. Vision-to-code in seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>God Mode</h3>
+                    <p>Hands-free coding with continuous voice input. Talk to VIRU like a copilot.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✈️</div>
+                    <h3>Autopilot</h3>
+                    <p>Self-healing code. VIRU writes, tests, finds errors, and fixes them automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Neural Link</h3>
+                    <p>RAG system remembers your entire project. True context awareness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Private</h3>
+                    <p>Runs entirely on your machine. No cloud, no telemetry, no data uploads.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Free Forever</h3>
+                    <p>No subscriptions, no trials. Completely open-source under MIT license.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2>How VIRU Compares</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>VIRU</th>
+                            <th>ChatGPT</th>
+                            <th>Copilot</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cost</td>
+                            <td><span class="check">✓</span> $0/month</td>
+                            <td><span class="cross">✗</span> $20/month</td>
+                            <td><span class="cross">✗</span> $10/month</td>
+                        </tr>
+                        <tr>
+                            <td>Local & Private</td>
+                            <td><span class="check">✓</span> Yes</td>
+                            <td><span class="cross">✗</span> Cloud only</td>
+                            <td><span class="cross">✗</span> Cloud only</td>
+                        </tr>
+                        <tr>
+                            <td>File System Access</td>
+                            <td><span class="check">✓</span> Full access</td>
+                            <td><span class="cross">✗</span> No</td>
+                            <td><span class="cross">✗</span> Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Vision (Screenshot → Code)</td>
+                            <td><span class="check">✓</span> Yes</td>
+                            <td><span class="cross">✗</span> Paid only</td>
+                            <td><span class="cross">✗</span> No</td>
+                        </tr>
+                        <tr>
+                            <td>Self-Healing Code</td>
+                            <td><span class="check">✓</span> Autopilot</td>
+                            <td><span class="cross">✗</span> No</td>
+                            <td><span class="cross">✗</span> No</td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        How is VIRU different from ChatGPT?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        VIRU runs 100% locally on your machine, has direct file system access to write code, and costs
+                        $0/month forever. ChatGPT is cloud-based, has no file access, and costs $20/month.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        Do I need to know Docker?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No! Just install Docker Desktop (free) and run 2 commands. It's literally copy-paste. The entire
+                        setup takes ~2 minutes.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        What AI models can I use?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Any Ollama model: Mistral, Llama, CodeLlama, DeepSeek, etc. You can also configure it to use
+                        OpenAI's API if you prefer.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        Is my code really private?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! VIRU runs entirely on your local machine. Your code, conversations, and project data never
+                        leave your computer. No telemetry, no logging, no external API calls (unless you configure
+                        OpenAI).
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        Can I use VIRU for commercial projects?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! VIRU is MIT licensed, which means you can use it for any purpose, including
+                        commercial projects, without any restrictions or fees.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        Does it work offline?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Once you have Ollama models downloaded, VIRU works completely offline. Perfect for flights,
+                        remote locations, or anywhere without internet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section class="install">
+        <div class="container">
+            <h2>Get Started in 2 Minutes</h2>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 2rem;">
+                Requires: Docker Desktop + Ollama (both free)
+            </p>
+
+            <div class="code-block">
+                <code>
+                    git clone https://github.com/rajpratham1/VIRU.git<br>
+                    cd VIRU<br>
+                    docker-compose up -d
+                </code>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem;">
+                Then visit <strong style="color: #3b82f6;">http://localhost:5173</strong>
+            </p>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://github.com/rajpratham1/VIRU" class="btn btn-primary">Download from GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="color: #94a3b8;">Built by Raj Pratham • Open Source (MIT License)</p>
+            <p style="color: #64748b; margin-top: 0.5rem; font-size: 0.9rem;">
+                Made with ❤️ for developers who value privacy and freedom
+            </p>
+
+            <!-- Legal Disclaimer -->
+            <p
+                style="font-size: 0.8rem; color: #64748b; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                ChatGPT and GitHub Copilot are trademarks of their respective owners.
+                VIRU is an independent project and is not affiliated with, endorsed by,
+                or sponsored by OpenAI or GitHub.
+            </p>
+
+            <div class="social-links">
+                <a href="https://github.com/rajpratham1/VIRU" title="GitHub">⭐ GitHub</a>
+                <a href="https://github.com/rajpratham1/VIRU/issues" title="Support">💬 Support</a>
+                <a href="https://github.com/rajpratham1/VIRU#readme" title="Docs">📚 Docs</a>
+                <a href="https://github.com/rajpratham1/VIRU/discussions" title="Community">👥 Community</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particles.js Configuration -->
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#3b82f6' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#3b82f6',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+
+</html>

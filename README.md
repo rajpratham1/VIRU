@@ -12,6 +12,11 @@
 ## 🔍 Keywords
 `ChatGPT alternative` · `GitHub Copilot alternative` · `free AI coding assistant` · `local LLM` · `self-hosted AI` · `privacy-first AI` · `open-source coding assistant` · `autonomous AI agent` · `Ollama` · `local AI developer tool`
 
+## 🌐 Web Presence
+
+**Landing Page**: [viru.vercel.app](https://viru.vercel.app) _(Deploy your own from `landing-page/`)_  
+**GitHub**: [github.com/rajpratham1/VIRU](https://github.com/rajpratham1/VIRU)  
+**License**: MIT (100% Free & Open Source)
 
 ---
 
