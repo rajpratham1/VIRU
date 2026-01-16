@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 
 import { NeuralLink } from './components/NeuralLink';
 import { AgentManager } from './components/AgentManager';
+import { PrivyChatPanel } from './components/PrivyChatPanel';
 import { Bot } from 'lucide-react';
 
 function App() {
@@ -119,6 +120,9 @@ function App() {
           )}
         </div>
       </main>
+
+      {/* PrivyChat Integration */}
+      <PrivyChatPanel />
     </div>
   );
 }
