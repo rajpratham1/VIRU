@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - VIRU</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #94a3b8;
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: #94a3b8;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #8b5cf6;
+        }
+
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+            margin: 1rem 0;
+        }
+
+        .last-updated {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <h1>🔒 Privacy Policy</h1>
+        <p class="last-updated">Last Updated: January 16, 2026</p>
+
+        <div class="highlight">
+            <strong>TL;DR:</strong> VIRU runs 100% locally on your machine. We don't collect, store, or share any of
+            your data. Ever.
+        </div>
+
+        <h2>1. Introduction</h2>
+        <p>
+            VIRU ("Virtual Intelligence Response Unit") is a self-hosted, open-source AI coding assistant.
+            This privacy policy explains our commitment to your privacy and how we handle (or rather, don't handle) your
+            data.
+        </p>
+
+        <h2>2. Data Collection</h2>
+        <p><strong>We collect ZERO data.</strong></p>
+        <p>VIRU is designed to run entirely on your local machine. This means:</p>
+        <ul>
+            <li>Your code never leaves your computer</li>
+            <li>Your conversations with VIRU stay local</li>
+            <li>Your project files remain on your machine</li>
+            <li>No telemetry, analytics, or tracking of any kind</li>
+        </ul>
+
+        <h2>3. How VIRU Works</h2>
+        <p>VIRU uses:</p>
+        <ul>
+            <li><strong>Ollama:</strong> A local LLM runtime that processes everything on your machine</li>
+            <li><strong>SQLite Database:</strong> Stored locally in your VIRU installation directory</li>
+            <li><strong>Docker Volumes:</strong> All data persists in local Docker volumes on your system</li>
+        </ul>
+        <p>
+            Unless you explicitly configure VIRU to use OpenAI's API (optional), no data is ever sent to external
+            servers.
+        </p>
+
+        <h2>4. Website & Landing Page</h2>
+        <p>This website (landing page) uses:</p>
+        <ul>
+            <li><strong>Essential Cookies:</strong> Only to remember your cookie consent choice (stored in browser
+                localStorage)</li>
+            <li><strong>No Analytics:</strong> We don't use Google Analytics, Facebook Pixel, or any tracking scripts
+            </li>
+            <li><strong>No Third-Party Services:</strong> No external fonts from Google (self-hosted), no CDNs tracking
+                you</li>
+        </ul>
+
+        <h2>5. Third-Party Services (Optional)</h2>
+        <p>If you choose to configure VIRU with external services:</p>
+        <ul>
+            <li><strong>OpenAI API:</strong> If you add your API key, your prompts will be sent to OpenAI. Subject to
+                OpenAI's privacy policy.</li>
+            <li><strong>GitHub:</strong> Source code is hosted on GitHub. Subject to GitHub's privacy policy.</li>
+        </ul>
+        <p><strong>These are 100% optional</strong> and controlled by you.</p>
+
+        <h2>6. Your Rights</h2>
+        <p>Since we don't collect any data, there's nothing to:</p>
+        <ul>
+            <li>Request access to</li>
+            <li>Request deletion of</li>
+            <li>Opt out of</li>
+            <li>Export</li>
+        </ul>
+        <p>You have complete control because everything is on your machine.</p>
+
+        <h2>7. GDPR Compliance</h2>
+        <p>
+            VIRU is inherently GDPR-compliant because:
+        </p>
+        <ul>
+            <li>We don't process any personal data</li>
+            <li>All data stays on your device</li>
+            <li>You are the data controller</li>
+        </ul>
+
+        <h2>8. Children's Privacy</h2>
+        <p>
+            VIRU is a developer tool and not intended for children under 13.
+            Since we don't collect data, this is a non-issue, but we recommend parental guidance.
+        </p>
+
+        <h2>9. Changes to This Policy</h2>
+        <p>
+            We may update this policy to reflect changes in our practices or for legal reasons.
+            Check this page periodically for updates. The "Last Updated" date will change.
+        </p>
+
+        <h2>10. Open Source Transparency</h2>
+        <p>
+            VIRU is MIT-licensed open source. You can audit the entire codebase at:
+            <br>
+            <a href="https://github.com/rajpratham1/VIRU"
+                style="color: #3b82f6;">https://github.com/rajpratham1/VIRU</a>
+        </p>
+        <p>
+            If you find any privacy concerns, please open an issue on GitHub.
+        </p>
+
+        <h2>11. Contact</h2>
+        <p>
+            For privacy questions or concerns:
+        </p>
+        <ul>
+            <li>GitHub Issues: <a href="https://github.com/rajpratham1/VIRU/issues" style="color: #3b82f6;">VIRU
+                    Issues</a></li>
+            <li>GitHub Discussions: <a href="https://github.com/rajpratham1/VIRU/discussions"
+                    style="color: #3b82f6;">VIRU Discussions</a></li>
+        </ul>
+
+        <div class="highlight" style="margin-top: 3rem;">
+            <strong>Bottom Line:</strong> VIRU is built for privacy-conscious developers.
+            Your code is yours. Your data is yours. We can't access it even if we wanted to.
+        </div>
+
+        <p class="last-updated">
+            © 2026 VIRU Project. Licensed under MIT License.
+        </p>
+    </div>
+</body>
+
+</html>
