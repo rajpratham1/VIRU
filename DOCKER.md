@@ -131,6 +131,17 @@ environment:
   - AI_MODEL_URL=http://host.docker.internal:11434
 ```
 
+### "Prisma Error: Library not found" (Alpine Linux Issue)
+**Problem**: Alpine Linux has compatibility issues with Prisma binaries.
+
+**Solution**: We use Debian slim base (`node:18-slim`) instead of Alpine. This provides better Prisma compatibility out of the box.
+
+**Why Debian over Alpine:**
+- ✅ Native Prisma support (no special binary targets needed)
+- ✅ Better library compatibility (glibc vs musl)
+- ✅ More stable for production workloads
+- ⚠️ Slightly larger image size (~200MB vs ~150MB for Alpine)
+
 ### "Database is locked"
 **Problem**: Multiple containers trying to access SQLite.
 
@@ -149,6 +160,14 @@ volumes:
 ports:
   - "8080:5000"  # Access via localhost:8080
 ```
+
+### "ERR_CONNECTION_REFUSED" in browser
+**Problem**: Server container crashed or didn't start.
+
+**Solution**:
+1. Check server logs: `docker logs viru-server-1`
+2. Verify all containers are running: `docker ps`
+3. Restart: `docker-compose restart server`
 
 ---
 
