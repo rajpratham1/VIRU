@@ -4,6 +4,10 @@
     "outputDirectory": "landing-page",
     "routes": [
         {
+            "src": "/privacy",
+            "dest": "/privacy.html"
+        },
+        {
             "src": "/(.*)",
             "dest": "/index.html"
         }
