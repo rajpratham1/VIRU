@@ -7,7 +7,11 @@
 ![License](https://img.shields.io/badge/LICENSE-MIT-green)
 ![Stack](https://img.shields.io/badge/STACK-MERN%20%2B%20LOCAL%20LLM-orange)
 
-VIRU is an advanced **Agentic IDE** that lives on your desktop. Unlike standard chatbots, VIRU has direct access to your file system, allowing it to write code, execute commands, and deploy applications autonomously. It combines the power of **Local LLMs (Ollama)** with a modern React interface.
+**Free alternative to ChatGPT and GitHub Copilot** - VIRU is a privacy-first, self-hosted AI coding assistant that runs 100% locally. Unlike cloud-based alternatives, your code never leaves your machine, and there are no monthly subscription fees.
+
+## 🔍 Keywords
+`ChatGPT alternative` · `GitHub Copilot alternative` · `free AI coding assistant` · `local LLM` · `self-hosted AI` · `privacy-first AI` · `open-source coding assistant` · `autonomous AI agent` · `Ollama` · `local AI developer tool`
+
 
 ---
 

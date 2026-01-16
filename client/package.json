@@ -1,7 +1,14 @@
 {
-  "name": "client",
+  "name": "viru-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "VIRU Neural Interface - Self-hosted AI coding assistant frontend with vision, voice, and autonomous agent features",
+  "keywords": [
+    "ai-assistant",
+    "react",
+    "coding-tool",
+    "chatgpt-alternative"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
