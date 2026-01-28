@@ -1,0 +1,58 @@
+services:
+  # Backend API
+  server:
+    build: ./server
+    # Once published to Docker Hub, replace with:
+    # image: rajpratham1/viru-server:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=${JWT_SECRET:-viru_dev_secret}
+      # For Ollama running on host machine:
+      - AI_MODEL_URL=http://host.docker.internal:11434
+      - WORKSPACE_ROOT=/app/workspace
+    volumes:
+      - viru_brain:/app/brain
+      - viru_db:/app/prisma
+      - viru_workspace:/app/workspace
+    restart: unless-stopped
+
+  # Main Client (The Neural Interface)
+  client:
+    build: ./client
+    # Once published to Docker Hub, replace with:
+    # image: rajpratham1/viru-client:latest
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+  # Admin Portal (Overwatch)
+  admin:
+    build: ./admin
+    # Once published to Docker Hub, replace with:
+    # image: rajpratham1/viru-admin:latest
+    ports:
+      - "5174:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  viru_brain:
+  viru_db:
+  viru_workspace:
+
+# Usage (Development):
+# 1. docker-compose up --build -d
+# 2. Access Client at http://localhost:5173
+# 3. Access Admin at http://localhost:5174
+# 4. Access API at http://localhost:5000
+#
+# Usage (Production - after publishing to Docker Hub):
+# 1. Uncomment the 'image:' lines and comment out 'build:' lines
+# 2. docker-compose pull
+# 3. docker-compose up -d

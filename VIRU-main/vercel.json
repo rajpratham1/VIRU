@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "buildCommand": "echo 'No build needed - static files'",
+    "outputDirectory": "landing-page",
+    "routes": [
+        {
+            "src": "/privacy-policy.html",
+            "dest": "/privacy-policy.html"
+        },
+        {
+            "src": "/privacy-policy",
+            "dest": "/privacy-policy.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
+        }
+    ]
+}
