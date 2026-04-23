@@ -9,7 +9,7 @@
         content="Free alternative to ChatGPT and GitHub Copilot. Self-hosted AI with vision, voice, and autopilot. $0/month forever.">
 
     <!-- Fonts -->
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -607,9 +607,8 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="https://github.com/rajpratham1/VIRU/archive/refs/heads/main.zip" class="btn btn-primary"
-                        download>Download ZIP</a>
-                    <a href="https://github.com/rajpratham1/VIRU#readme" class="btn btn-secondary">View Docs</a>
+                    <a href="https://github.com/rajpratham1/VIRU/archive/refs/heads/main.zip" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download ZIP</a>
+                    <a href="https://github.com/rajpratham1/VIRU#readme" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Docs</a>
                 </div>
 
                 <!-- Trust Badges -->
@@ -1110,7 +1109,7 @@
             </p>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://github.com/rajpratham1/VIRU" class="btn btn-primary">Download from GitHub →</a>
+                <a href="https://github.com/rajpratham1/VIRU/archive/refs/heads/main.zip" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download ZIP from GitHub →</a>
             </div>
         </div>
     </section>
@@ -1421,7 +1420,7 @@
                             Policy</a>
                     </li>
                     <li style="margin-bottom: 0.8rem;">
-                        <a href="#" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;"
+                        <a href="terms.html" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;"
                             onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">Terms &
                             Conditions</a>
                     </li>
@@ -1452,46 +1451,48 @@
 
 
     <script>
-        // Cookie Banner Logic
-        window.addEventListener('load', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             const cookieBanner = document.getElementById('cookieBanner');
             const cookieAccept = document.getElementById('cookieAccept');
             const cookieDecline = document.getElementById('cookieDecline');
+            const backToTop = document.getElementById('backToTop');
 
-            // Check if user has already made a choice
-            if (!localStorage.getItem('cookieConsent')) {
+            if (cookieBanner && !localStorage.getItem('cookieConsent')) {
                 setTimeout(() => {
                     cookieBanner.classList.add('show');
                 }, 1000);
             }
 
-            cookieAccept.addEventListener('click', function () {
-                localStorage.setItem('cookieConsent', 'accepted');
-                cookieBanner.classList.remove('show');
-            });
-
-            cookieDecline.addEventListener('click', function () {
-                localStorage.setItem('cookieConsent', 'declined');
-                cookieBanner.classList.remove('show');
-            });
-        });
-
-        // Back to Top Button
-        const backToTop = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
+            if (cookieAccept && cookieBanner) {
+                cookieAccept.addEventListener('click', function () {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    cookieBanner.classList.remove('show');
+                });
             }
-        });
 
-        backToTop.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            if (cookieDecline && cookieBanner) {
+                cookieDecline.addEventListener('click', function () {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    cookieBanner.classList.remove('show');
+                });
+            }
+
+            if (backToTop) {
+                window.addEventListener('scroll', function () {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+
+                backToTop.addEventListener('click', function () {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
         });
     </script>
     <!-- Cookie Consent Banner -->
@@ -1518,3 +1519,4 @@
 </body>
 
 </html>
+
