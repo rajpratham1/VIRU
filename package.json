@@ -8,6 +8,9 @@
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" \"npx localtunnel --port 5000 --subdomain viru-rajpratham-gen1\"",
+    "dev:local": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build:web": "npm --prefix server run build && npm --prefix client run build",
+    "start:web": "npm --prefix server run start",
     "share": "npx localtunnel --port 5000 --subdomain viru-rajpratham-gen1"
   },
   "keywords": [

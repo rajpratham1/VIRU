@@ -1,8 +1,5 @@
 import express from 'express';
-import cors from 'cors';
 import { CONFIG } from './config';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 
 const app = express();
 
@@ -40,7 +37,7 @@ import { autopilotService } from './services/autopilot.service';
 
 const agentService = new AgentService();
 
-app.get('/', (req, res) => {
+app.get('/api/health', (req, res) => {
     res.send({ status: 'VIRU Server Online', version: '1.0.0', mode: 'Self-Hosted' });
 });
 
@@ -343,6 +340,26 @@ app.post('/api/chat', authenticateToken, async (req: AuthRequest, res) => {
         console.error(error);
         await fs.appendFile('error.log', `${new Date().toISOString()} - ${error.stack || error}\n`);
         res.status(500).json({ error: 'Internal System Error: ' + error.message });
+    }
+});
+
+const clientDistPath = path.resolve(__dirname, '../../client/dist');
+const clientIndexPath = path.join(clientDistPath, 'index.html');
+
+app.use(express.static(clientDistPath));
+
+app.use(async (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+        return next();
+    }
+
+    try {
+        await fs.access(clientIndexPath);
+        res.sendFile(clientIndexPath);
+    } catch {
+        res.status(404).json({
+            error: 'Client build not found. Run "npm run build:web" from the repo root before starting the web app.'
+        });
     }
 });
 
