@@ -1,2 +1,4 @@
+const rawApiBaseUrl = import.meta.env.VITE_API_URL?.trim();
 
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// Default to same-origin so the built frontend can run behind the same backend host.
+export const API_BASE_URL = rawApiBaseUrl || '';
